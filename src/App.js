@@ -9,13 +9,11 @@ function App() {
   const [answer, setAnswer] = useState('');
   const [isListening, setIsListening] = useState(false);
   const [audioStories, setAudioStories] = useState([]);
-  const [audio, setAudio] = useState(null); // Track the audio instance
-  const [isPlaying, setIsPlaying] = useState(false); // Track the playing status
+  const [audio, setAudio] = useState(null); 
+  const [isPlaying, setIsPlaying] = useState(false); 
 
-  const API_KEY = process.env.REACT_APP_GROQ_API_KEY; // Add your Gemini API key here
-
+  const API_KEY = process.env.REACT_APP_GROQ_API_KEY; 
   useEffect(() => {
-    // Mock fetching audio stories from a backend or local storage
     setAudioStories([
       {
         id: 1,
@@ -38,7 +36,6 @@ function App() {
     if (type === 'income') {
       setBudget({ ...budget, income: value });
     } else if (type === 'expenses') {
-      // If expenses exceed income, prompt an error message
       if (parseFloat(value) > parseFloat(budget.income || 0)) {
         alert(
           language === 'hindi'
@@ -50,8 +47,7 @@ function App() {
       }
     }
   };
-
-  // Modify this function to use the Gemini API
+  
   const handleQuestionSubmit = async () => {
     if (!question) return;
 
@@ -60,11 +56,11 @@ function App() {
       const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${API_KEY}`, // Replace with your actual API key
+          'Authorization': `Bearer ${API_KEY}`, 
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          model: 'llama-3.3-70b-versatile', // Use the model specified in the documentation
+          model: 'llama-3.3-70b-versatile', 
           messages: [
             {
               role: 'user',
@@ -81,7 +77,7 @@ function App() {
       }
 
       const data = await response.json();
-      console.log('API Response:', data); // Log the full API response
+      console.log('API Response:', data); 
 
       // Parse the response based on actual structure
       const generatedAnswer =
@@ -168,11 +164,11 @@ function App() {
         const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
           method: 'POST',
           headers: {
-            'Authorization': `Bearer ${API_KEY}`, // Replace with your actual API key
+            'Authorization': `Bearer ${API_KEY}`, 
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            model: 'llama-3.3-70b-versatile', // Use the model specified in the documentation
+            model: 'llama-3.3-70b-versatile', 
             messages: [
               {
                 role: 'user',
